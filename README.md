@@ -1,5 +1,5 @@
 # Masters-Project-Work
-All code below is in matlab.
+All files below are matlab .m files.
 
 # **Explanation of Files and Output**
 
