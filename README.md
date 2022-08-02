@@ -1,89 +1,129 @@
 # Masters-Project-Work
-Working code for numerical differential equations and analysis
-
-# **The Abelian Sandpile Model**
-The Abelian Sandpile Model is the common name for the original Bak-Tang-Wiesenfeld Model which was the first discovered example of a system to display Self-Organized Criticality. The Abelian Sandpile Model attempts to predict and model avalanches within a sandpile. This model was first introduced in a 1987 paper by Bak, Tang, Wisenfeld. Since then many extension of the model have been built and much research has gone into understanding the statistics of the model.
-
-To learn more about The Abelian Sandpile Model and Self-Organized Criticality please see the oringial 1987 scientific paper, *Self-Organized Criticality* by Bak, Tang, Weisenfeld.
-
-[1987 Bak, Tang, Wiesenfeld.](http://www.chialvo.net/Curso/Cordoba2005/ClasesPowerpoints/Presentacion9/PapersClase9/soc2.pdf)
-___
-
-# **About this code**
-The following files contain code to simulate The Abelian Sandpile Model subject to various conditions. As well as code to simulate The General Wildfire Model which is an extension of The Abelian Wildfire Model.
-
-- sandpile.py
-- wildfire.py
-- Functions.py
-- InitialConditionComparison.py
-
-This code is intended for scientific purpose use and hence there are various parameters available to tune for both the Sandpile Model and the General Wildfire Model. Output for both models consists of various data which is explained in detail below.
-___
-
-# **Pip Install Packages**
-The following needs to be installed for the code to run.
-
-- numpy
-- scipy
-- matplotlib
-
-___
+All code below is in matlab.
 
 # **Explanation of Files and Output**
 
-**1. <u> sandpile.py** </u>\
-Run this file to simulate the Sandpile Model.
-You will be asked for user input for the following questions which determine certain parameters of the Model.
+**1. <u> Main1.m** </u>\
+Shows travelling wave behaviour of solutions and shows convergence in slope of travelling wave.
 
-* How many stationary state avalanche occurances do you need between 100 and 1000?:
-* Choose length of sandpile grid between 10 and 50:
-* Choose initial condition.
-Randomized Configuration (0) or Level Configuration (1)? Enter 0 or 1:
-* Choose level configuration between 0,1,2,3:
+Input data:
+- lambda
+- omega
+- N (How many solutions you want to consider)
+- P (How many solutions you want to plot, < N)
+- 
+Output data:
+- Line plot showing travelling wave behaviour of solutions.
+- Line plot showing the asymptotic convergence in slope of the travelling wave solutions.
+
+**2. <u> Main2.m** </u>\
+Shows (n = N fixed) solution against variation in lambda and omega.
+
+Input data (variation in lambda):
+- N            (fixed solution)
+- L            (lambda upper bound)
+- l            (lambda lower bound)
+- stepL        (step size for variation in lambda)
+- omegaFixed   (fixed value for omega)
+
+Input data (variation in omega):
+- N             (fixed solution)
+- W             (omega upper bound)
+- w             (omega lower bound)
+- stepW         (step size for variation in omega)
+- lambdaFixed   (fixed value for lambda)
 
 Output data:
-- Four plots containing the distributions of sandpile hights 0, 1, 2, 3 for the given input.
-- Plot containing the mean number of sandgrains per lattice site over time.
-- Plot containing the distribution of the simulated times between avalanches against a geoemetric distribtuion of rate 0.41
-- Four loglog plots containing frequency of avalanche metrics: Topples, Loss, Area, Length.
+- Line plot showing multiple (n=N) solutions for varying lambda.
+- Line plot showing multiple (n=N) solutions for varying omega.
 
+**3. <u> Main3.m** </u>\
+Shows slope of solution (n = N fixed) against variation in lambda and omega.
 
-**2. <u> sandpile_InitialConditions.py** </u>\
-Run this file to view how convergence to stationary state is independent of initial configruations.
-We chose intial configurations of;
-1. Lattice Uniformly Randomized on {0, 1, 2, 3}
-2. Lattice Level Set for Level set chosen from {0, 1, 2, 3}
-
-Output data:
-- Plot showing mean number of sandgrains per site over time for each initial configuration.
-
-**3. <u> wildfire.py** </u>\
-Run this file to simulate the General Wildfire Model.\
-There are various parameters to this model which are coded in at the top and are available for adjustment as commented.
-* Length of grid dimension.
-* Initial Tree density.
-* Wind Direction or no Wind.
-* Pg = Probability of site with no tree growing a tree.
-* Pf = Probability of tree next to fire catching fire.
-* Pe = Probability of tree on fire burning out and becoming an empty site.
-* f = Probability of a tree catching fire by lightning strike.
-* Number of Iterations
-
-Please feel free to adjust the parameters to your liking.\
-Some parameter combinations will make the fire burn out very fast, others will make the fire consume the grid quickly.
-
-In order to simulate a stationary wildfire we recommend using the following probabilies as a starting point for adjustment.
-* Pg = 0.2
-* Pf = 0.9
-* Pe = 0.5
-* f = 0.005
+Input data:
+- N            (fixed solution)
+- L            (lambda upper bound)
+- l            (lambda lower bound)
+- stepL        (step size for variation in lambda)
+- W            (omega upper bound)
+- w            (omega lower bound)
+- stepW        (step size for variation in omega)
 
 Output data:
-- Time series plot containing the proportion of grid with tree on fire, tree not on fire and empty sites.
-- Snap shot of the fire after the specified iteraitons.
-- Live animation of the wildfire.\
- If a wind direction was chosen then you will be able to view the affect of the wind on the model. The fire tends to drift towards the direction of the wind. This is a global behaviour over the whole grid even though it is only locally defined in our code.
+- Surface plot showing slope of (n=N) solution vs variation in lambda and omega.
 
-**4. <u> Functions.py** </u>\
-No need to run this file!\
-This file contains various functions which have been used in the above files.
+**4. <u> Main4.m** </u>\
+Shows slope of travelling wave with variation in lambda or omega.
+
+Input data (variation in lambda):
+- N            (fixed solution)
+- L            (lambda upper bound)
+- l            (lambda lower bound)
+- stepL        (step size for variation in lambda)
+- omegaFixed   (fixed value for omega)
+
+Input data (variation in omega):
+- N            (fixed solution)
+- W            (omega upper bound)
+- w            (omega lower bound)
+- stepW        (step size for variation in omega)
+- lambdaFixed  (fixed value for lambda)
+
+Output data:
+- Surface plot showing slope vs variation in lambda and n.
+- Surface plot showing slope vs variation in omega and n.
+
+**5. <u> Main5.m** </u>\
+Shows the velocity of travelling wave for increasing n.
+
+Input data:
+- lambda   (lambda value fixed)
+- omega    (omega value fixed)
+- N        (How many solutions you need)
+
+Output data:
+- Line plot showing velocity vs increasing n.
+- Above line plot includes asymptotic line and value.
+
+**6. <u> Main6.m** </u>\
+Shows the velocity of travelling wave with variation in lambda or omega.
+
+Input data (variation in lambda):
+- N            (How many travelling wave solutions you need)
+- L            (lambda upper bound)
+- l            (lambda lower bound)
+- stepL        (step size for variation in lambda)
+- omegaFixed   (fixed value for omega)
+
+Input data (variation in omega):
+- N            (How many travelling wave solutions you need)
+- W            (omega upper bound)
+- w            (omega lower bound)
+- stepW        (step size for variation in omega)
+
+Output data:
+- Surface plot showing velocity vs variation in lambda and n.
+- Surface plot showing velocity vs variation in omega and n.
+
+**7. <u> slope.m** </u>\
+Function used in other files to find the slope of a solution.
+
+We measure the slope of a solution about the point y == 0.5.
+
+Function input:
+- t   (time array)
+- y   (solution array)
+
+Function output:
+- D   (approximate derivative at y == 0.5)
+
+**8. <u> slope_tval.m** </u>\
+Function used in other files to find the approximate t value when y == 0.5.
+
+Function input:
+- t      (time array)
+- y      (solution array)
+
+Function output:
+- tval   (approximate t value at y == 0.5)
+
